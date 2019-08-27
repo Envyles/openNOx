@@ -1,2 +1,2 @@
 # openNOx
-Open NOx measurement Station with Webservice for gathering data
+Open NOx measurement Station with Webservice for gathering measured data
