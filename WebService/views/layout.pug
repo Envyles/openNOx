@@ -1,0 +1,53 @@
+doctype html
+html
+	head
+		title= OpeNOx
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/w3.css')
+		meta(charset='UTF-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1')
+		script function myFunction() { var x = document.getElementById("menue"); if (x.className.indexOf("w3-show") == -1) {x.className += " w3-show";} else {  x.className = x.className.replace(" w3-show", "");}}
+		
+		link(rel='shortcut icon' href='/favicon.ico' type='image/x-icon')
+		link(rel='icon' href='/favicon.png' type='image/png')
+		
+	body
+		
+		div(class='w3-top')
+			div(class='w3-bar w3-green w3-card w3-left-align w3-large')
+				a(class='w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-green' href='javascript:void(0);' onclick='myFunction()' title='Toggle Navigation Menu')
+					i ≡
+				a(href='/' class='w3-bar-item w3-button w3-padding-large w3-white') Home
+				a(href='about' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white') Stickoxide
+				a(href='manual' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white') Mitmachen
+				a(href='map' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white') Karte
+				if logedin
+					a(href='mystation' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white') Meine Station
+					a(href='api/logout' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white') Logout
+				else
+					a(href='login' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white') Login
+					a(href='register' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white') Registrieren
+
+			div(id='menue' class='w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large')
+				a(href='about' class='w3-bar-item w3-button w3-padding-large') Stickoxide
+				a(href='manual' class='w3-bar-item w3-button w3-padding-large') Mitmachen
+				a(href='map' class='w3-bar-item w3-button w3-padding-large') Karte
+				
+				if logedin
+					a(href='mystation' class='w3-bar-item w3-button w3-padding-large') Meine Station
+					a(href='api/logout' class='w3-bar-item w3-button w3-padding-large') Logout
+				else
+					a(href='login' class='w3-bar-item w3-button w3-padding-large') Login
+					a(href='register' class='w3-bar-item w3-button w3-padding-large') Registrieren
+					
+		div(style= 'margin-top: 52px' )
+		
+		
+		block content
+		
+				
+		footer(class='w3-container w3-padding-64 w3-center w3-opacity w3-green')  
+			div(class='w3-xlarge w3-padding-32')
+				a(href='impressum' class='w3-bar-item w3-button w3-padding-large') Impressum
+	
+			p Design powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>

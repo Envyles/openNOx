@@ -1,0 +1,28 @@
+extends layout
+	
+block content
+	link(rel='stylesheet', href='/stylesheets/leaflet.css')
+	link(rel='stylesheet', href='/stylesheets/leaflet-search.css')
+	script(src='/javascripts/leaflet.js')
+	script(src='/javascripts/heatmap.min.js')
+	script(src='/javascripts/leaflet-heatmap.js')
+	script(src='/javascripts/leaflet-search.src.js')
+	
+	div(class='w3-row-padding w3-padding-64 w3-container' id='noxmap' style='height: 400px; z-index: 0;')
+
+
+				
+	div(class='w3-row-padding w3-padding-64 w3-container w3-light-grey')
+		div(class='w3-content')
+			div(class='w3-twothird')
+				h1 Willkommen bei OpenNOx!
+				h5(class='w3-padding-32') Hallo lieber Nutzer und Willkommen auf der Seite von OpenNOx, einem Projekt bei welchem jeder sich an einer Messung von Stickstoffdioxid beteiligen kann! 
+		
+				p(class='w3-text-grey') OpenNOx besteht aus einer Open Source Messstation zur Ermittlung der Stickstoffdioxidkonzentration und einer Webseite, auf der du dich grade schon befindest! Informationen zu Stickstoffdioxid als Luftschadstoff findest du hinter dem Link Stickoxide oben in der Menüleiste. Möchtest du mit einer eigenen Messstation an der Messung teilnehmen? Dann schau doch unter Mitmachen vorbei!
+
+			div(class='w3-third w3-center')
+				i(class='w3-padding-64 w3-text-red') Test
+
+
+	script(src='/javascripts/noxmap.js') 
+	script BindNOXMap('noxmap')

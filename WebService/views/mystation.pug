@@ -1,0 +1,85 @@
+extends layout
+	
+block content
+	link(rel='stylesheet', href='/stylesheets/leaflet.css')
+	link(rel='stylesheet', href='/stylesheets/leaflet-search.css')
+	script(src='/javascripts/leaflet.js')
+	script(src='/javascripts/leaflet-search.src.js')
+	script(src='/javascripts/Chart.bundle.min.js')
+	
+		
+	div(class='w3-row-padding w3-padding-64 w3-container w3-light-grey')
+		div(class='w3-content')
+		
+			if !activated
+				div(class='w3-twothird')
+					i(class='w3-padding-128 w3-text-red') Du musst noch auf den Link in deiner Aktivierungsmail klicken um deinen Account vollständig zu aktivieren!
+				div(class='w3-third w3-center')
+		
+			div(class='w3-twothird')
+				h1 Meine Station:
+				h4
+					p(class='w3-text-black') Hier findest du alle Informationen zu deiner Messstation! Die UUID welche du benötigst damit deine Messstation ihre Daten korrekt übermittel kann, lautet wie folgt:
+					p(class='w3-text-black') UUID: #{sessionid}
+					
+					p(class='w3-text-black') Im folgenden siehst du den Verlauf der durch deine Messstation erfassten Messdaten:
+			div(class='w3-third w3-center')
+		
+			div(class='w3-twothird')
+				canvas(id='myChart' height = '200px')
+			div(class='w3-third w3-center')
+				i(class='w3-padding-128 w3-text-red') Bei den Messwerten der Messstation handelt es sich um Qualitative Messwerte, welche einen sehr großen Fehler aufweisen können! Der Einfluss der Luftfeuchtigkeit und Temperatur wird zwar zum Teil kompensiert, allerdings bleibt dennoch eine große Unsicherheit!
+			
+			div(class='w3-twothird')
+				p(class='w3-text-grey') Die ID deiner Messstation ist die  #{stationID}, diese wird gegebenenfalls benötigt um dir im falle von Problemen zu helfen. 
+			div(class='w3-third w3-center')
+			
+			div(class='w3-twothird')
+				h1 Sensorposition ändern
+				form(action = "/api/setsensorpos", method = "POST")
+				
+					label Latitude
+					input(class='w3-input' type='text' name = "latitude", id='latID')
+
+					label Longitude
+					input(class='w3-input' type='text' name = "longitude", id='lngID')
+
+					button(type = "submit") Sensorposition übernehmen
+				p Die Sensorposition kann entweder mit einem Rechtsklick auf die Karte oder durch langes drücken auf Touchscreens festgelegt werden!
+			div(class='w3-third w3-center' style='height: 300px; z-index: 0;' id='locationmap')
+				
+				
+			div(class='w3-twothird')
+				h1 Passwort ändern
+				form(action = "/api/changepassword", method = "POST")
+				
+					label Altes Passwort
+					input(class='w3-input' type='password' name = "oldpassword", id='latID')
+
+					label Neues Passwort
+					input(class='w3-input' type='password' name = "newpassword", id='lngID')
+
+					label Neues Passwort wiederholen
+					input(class='w3-input' type='password' name = "newpasswordrepeat", id='lngID')
+
+					button(type = "submit") Neues Passwort übernehmen
+				
+			div(class='w3-third w3-center')
+			
+			div(class='w3-twothird')
+				h1 Account Löschen
+				form(action = "/api/unregister", method = "POST")
+				
+					label Passwort zur Verifikation
+					input(class='w3-input' type='password' name = "password", id='latID')
+
+					button(type = "submit") Account und Messstation löschen
+				
+			div(class='w3-third w3-center')
+				i Hier kannst du deine Station löschen falls du nichtmehr teilnehmen möchtest!
+			
+	script(src='/javascripts/locationpickermap.js')
+	script BindPickerMap('locationmap', 'latID', 'lngID',#{stationID})
+	
+	script(src='/javascripts/noxgraph.js') 
+	script generateGraph(#{stationID},'myChart')

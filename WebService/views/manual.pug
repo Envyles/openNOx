@@ -1,0 +1,145 @@
+extends layout
+	
+block content
+	div(class='w3-row-padding w3-padding-32 w3-container w3-light-grey')
+		div(class='w3-content')
+			div(class='w3-twothird')
+				h1 Komponentenliste
+				h5 Im folgenden findest du eine Liste aller Komponenten welche zum bau deiner eigenen Messstation benötigt werden!
+				table(class='w3-table-all')
+					thead
+						tr(class='w3-green')
+							th Komponentenbezeichnung
+							th Beschreibung
+							th Preis (ca.)
+					tr
+						td MiCS-4514
+						td Stickstoffdioxidsensor
+						td 15-20€
+					tr
+						td ESP32
+						td Microcontroller mit WLAN Funktionalität
+						td 8-12€
+					tr
+						td DHT11 oder DHT22
+						td Temperatur und Luftfeuchtesensor
+						td 3-6€
+					tr
+						td Steckplatine (Breadboard)
+						td Steckplatine für den Aufbau der Station
+						td 5-10€
+					tr
+						td 3x 470KΩ Widerstand
+						td Elektrischer Widerstand
+						td 1€
+					tr
+						td USB Netzteil
+						td Stromversorgung für die Messstation
+						td 5-10€
+					tr
+						td Steckbrücken/Kabel/Jumperkabel
+						td Kabel zum verbinden der Bauteile
+						td 5-7€
+				i Die meisten der Teile sind zum Beispiel bei AliExpress.com oder über eBay erhältlich. Als USB Netzteil kann auch dass Netzteil eines alten Smartphones eingesetzt werden! 
+				i Abhängig von der Herkunft der Teile kann es auch notwendig sein, die Steckpins des ESP32 und MiCS-4514 mithilfe eine Lötkolbens anzubringen!
+			div(class='w3-third w3-center' style='padding-top:128px')
+				img(src='/images/parts.jpg' style='padding:4px;width:100%')
+				i Foto aller benötigten Teile.
+	div(class='w3-row-padding w3-padding-32 w3-container w3-light-grey')
+		div(class='w3-content')
+			div(class='w3-third w3-center')
+				img(src='/images/buildstation.jpg' style='padding:4px;width:100%')
+
+			div(class='w3-twothird')
+				h1 Bauanleitung
+				h5(class='w3-padding-8') Der Aufbau einer eigenen Station besteht aus zwei Schritten: Dem verkabeln der Komponenten und dem aufspielen der Software. Beide Schritte werden im folgenden erklärt.
+	
+	div(class='w3-row-padding w3-padding-32 w3-container w3-light-grey')
+		div(class='w3-content')
+			div(class='w3-threequarter')
+				h1 Messstation
+				h5 Der erste Schritt besteht darin, den ESP32 und den DHT11/DHT22 auf das Breadboard zu stecken und die Stromversorgung des DHT anzuschließen. 
+				ul(class="w3-ul")
+					li Das rote Kabel verbindet hierbei den 5V Pin mit der Plusschiene (Rot) des Breadboards.
+					li Das blaue Kabel verbindet den Erdpin(GND) mit der Minusschiene (Blau) des Breadboards.
+					li Das braune Kabel verbindet den 3,3V Pin mit der zweiten Plusschiene des Breadboards.
+					li(class='w3-text-red') Das braune und rote Kabel dürfen nicht auf einer Schine angeschlossen werden, da dies den ESP32 beschädigen kann!
+				h5 Anschließend wird der DHT an das blaue(GND) und das braune(3,3V) Kabel angeschlossen. Hierbei wird GND an Pin 4 und 3,3V an Pin 1 des DHT angeschlossen.
+				img(src='/images/manual/01.png' style='padding:4px;width:80%')
+
+			div(class='w3-quarter w3-center' style='padding-top:128px')
+				i(class='w3-padding-64 w3-text-red') Es gilt zu beachten dass der ESP32 je nach Lieferant eine andere Pinbelegung haben kann!
+
+			
+	div(class='w3-row-padding w3-padding-32 w3-container w3-light-grey')
+		div(class='w3-content')
+			div(class='w3-quarter w3-center' style='padding-top:128px')
+				i(class='w3-padding-64 w3-text-red') Die Position von Pin 27 kann abhängig vom Hersteller des ESP32 auch von der Darstellung abweichen!
+		
+			div(class='w3-threequarter')
+				h5 Der nächste Schritt besteht im Anschluss des DHT an den Pin des ESP32 und das vorbereiten des Spannungsteilers für den MiCS-4514.
+				ul(class="w3-ul")
+					li Einer der Widerstände wird dazu genutzt die beiden Pins 2 und 3 des DHT zu verbinden.
+					li Einer der beiden verbundenen Pins wind anschließend mit Pin 27 des ESP32 verbunden (Grünes Kabel).
+					li Die verbleibenden zwei Widerstände werden anschließend so gesteckt, dass zwei der Pins zusammenstecken.
+				img(src='/images/manual/02.png' style='padding:4px;width:80%')
+		
+	div(class='w3-row-padding w3-padding-32 w3-container w3-light-grey')
+		div(class='w3-content')
+			div(class='w3-threequarter')
+				h5 Nun werden die Ersten nötigen Schritte beim Anschluss des Sensors durchgeführt.
+				ul(class="w3-ul")
+					li Der MiCS-4514 wird auf das Breadboard gesteckt (Hier repräsentiert durch den schwarzen Steckbalken).
+					li Der Pin 33 wird mit so verbunden, dass er mit den zwei verbundenen Widerständen zusammen steckt.
+					li Von den beiden verbleibenen, einzelnen, Pins der Wiederstände wird einer mit der Minusschiene (GND) und der zweite mit dem NOX Pin des MiCS-4514 verbunden
+				img(src='/images/manual/03.png' style='padding:4px;width:80%')
+				
+			div(class='w3-quarter w3-center' style='padding-top:128px')
+				i(class='w3-padding-64 w3-text-red') Es ist wichtig dass darauf geachtet wird dass die Wiederstände richtig verkabelt sind! Den ESP32 direkt an dem NOX Pin anzuschließen kann diesen beschädigen! 		
+		
+
+		
+	div(class='w3-row-padding w3-padding-32 w3-container w3-light-grey')
+		div(class='w3-content')
+			div(class='w3-quarter w3-center' style='padding-top:128px')
+				i(class='w3-padding-64 w3-text-red') Gratulation, die Messstation ist hiernach bereit ihre Firmware aufgespielt zu bekommen!
+		
+			div(class='w3-threequarter')
+				Der Letzte schritt besteht im Anschluss der Stromversorgung für den Sensor.
+				ul(class="w3-ul")
+					li Der Pin VCC des MiCS-4514 muss mit einem der 5V Pins der Plusschiene (Rot) verbunden werden.
+					li Der Pin GND des MiCS-4514 muss mit einem der GND Pins der Minusschiene (Blau) verbunden werden.
+				img(src='/images/manual/04.png' style='padding:4px;width:80%')
+
+
+
+
+	div(class='w3-row-padding w3-padding-32 w3-container w3-light-grey')
+		div(class='w3-content')
+			div(class='w3-threequarter')
+				h5 Zum aufspielen der Software wird zunächst die Arduino IDE benötigt, welche du <a href='https://www.arduino.cc/en/Main/Software'>hier</a> kostenlos herunterladen kannst.
+				
+			div(class='w3-quarter w3-center' style='padding-top:128px')
+				i(class='w3-padding-64 w3-text-red') Arduino Tip
+		
+
+		
+	div(class='w3-row-padding w3-padding-32 w3-container w3-light-grey')
+		div(class='w3-content')
+			div(class='w3-quarter w3-center' style='padding-top:128px')
+				i(class='w3-padding-64 w3-text-red') Aufspiel Tip
+		
+			div(class='w3-threequarter')
+				Der Letzte schritt besteht im Anschluss der Stromversorgung für den Sensor.
+
+				
+	div(class='w3-row-padding w3-padding-32 w3-container w3-light-grey')
+		div(class='w3-content')
+			div(class='w3-twothird')
+				h1 Quellcode
+				h5(class='w3-padding-8') Der gesamte Quellcode und die Messdaten welche im Rahmen der Erstellung dieser Seite und der Messstation ermittelt wurden, sind unter folgendem Link auf GitHub zu finden. 
+				h5 <a href="https://github.com/Envyles/openNOx"> https://github.com/Envyles/openNOx </a>
+				
+			div(class='w3-third w3-center' style='padding-top:64px')
+				i(class='w3-padding-64' ) Der Quellcode ist unter der <a href="https://de.wikipedia.org/wiki/MIT-Lizenz">MIT</a> Lizenz veröffentlicht!
+				

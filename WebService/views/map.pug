@@ -1,0 +1,19 @@
+extends layout
+	
+block content
+	link(rel='stylesheet', href='/stylesheets/leaflet.css')
+	link(rel='stylesheet', href='/stylesheets/leaflet-search.css')
+	script(src='/javascripts/leaflet.js')
+	script(src='/javascripts/heatmap.min.js')
+	script(src='/javascripts/leaflet-heatmap.js')
+	script(src='/javascripts/leaflet-search.src.js')
+	
+	div(class='w3-row-padding w3-padding-64 w3-container' id='noxmap' style='height: 600px; z-index: 0;')
+	div(class='w3-row-padding w3-padding-8 w3-container w3-light-grey')
+		div(class='w3-content')
+			
+			p(class='w3-text-grey') Grüne Marker markieren Behördliche Messstationen, blaue die von Teilnehmern. Die Behördlichen Messdaten werden von <a href="http://open.nrw">open.nrw</a> unter der <a href="http://www.govdata.de/dl-de/by-2-0">"Datenlizenz Deutschland – Namensnennung – Version 2.0"</a> Lizenz bereitgestellt. Der Datensatz wird unter diesem <a href="https://open.nrw/dataset/2b80d500-3c5b-42bc-9a4b-94043e11b653">Link</a> offiziell bereitgestellt.
+			p(class='w3-text-grey') Als Grundlage für die Färbung wird von 100 µg/m³ (die Hälfte des Stundengrenzwertes) als Maximum ausgegangen. 
+			
+	script(src='/javascripts/noxmap.js')
+	script BindNOXMap('noxmap')

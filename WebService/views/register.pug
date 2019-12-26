@@ -1,0 +1,39 @@
+extends layout
+
+block content
+	link(rel='stylesheet', href='/stylesheets/leaflet.css')
+	link(rel='stylesheet', href='/stylesheets/leaflet-search.css')
+	script(src='/javascripts/leaflet.js')
+	script(src='/javascripts/leaflet-search.src.js')
+	
+	
+	
+	div(class='w3-row-padding w3-padding-64 w3-container w3-light-grey')
+		div(class='w3-content')
+			h1 Registrieren:
+			div(class='w3-twothird')
+	
+				form(action = "/api/register", method = "POST")
+					label E-Mail
+					input(class='w3-input' type='text' name = "mailAdress")
+
+					label Passwort
+					input(class='w3-input' type='password' name = "password")
+					
+					label Passwort wiederholen
+					input(class='w3-input' type='password' name = "passwordrepeat")
+					
+					label Breitengrad
+					input(class='w3-input' type='text' name = "latitude", id='latID')
+
+					label Längengrad
+					input(class='w3-input' type='text' name = "longitude", id='lngID')
+
+					button(type = "submit") Registrieren
+					
+				p Das Passwort muss mindestens 6 Zeichen beinhalten! Die Sensorposition kann entweder mit einem Rechtsklick auf die Karte oder durch langes drücken auf Touchscreens festgelegt werden!
+			
+			div(class='w3-third w3-center' style='height: 300px; z-index: 0;' id='locationmap')
+				
+	script(src='/javascripts/locationpickermap.js')
+	script BindPickerMap('locationmap', 'latID', 'lngID',null)
