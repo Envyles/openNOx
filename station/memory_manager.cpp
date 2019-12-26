@@ -1,6 +1,10 @@
 #include "memory_manager.h"
 
 
+void memoryManager::init(){
+  EEPROM.begin(250);
+}
+
 //Loads the SSID from the EEPROM
 //it stops after 32 chars or when it reads a 0
 String memoryManager::loadSSID(){
@@ -25,12 +29,14 @@ boolean memoryManager::storeSSID(String SSID){
     for(int i = 0; i<32; i++){
       if (SSID.length() == i){
         EEPROM.write(32 + i,0 );
+        EEPROM.commit();
         return true; 
       } else {
         EEPROM.write(32 + i, SSID[i]);
       }//Password length 
     }// for
   }
+  EEPROM.commit();
   return true;
 }
 
@@ -59,12 +65,14 @@ boolean memoryManager::storeWLanPassword(String password){
     for(int i = 0; i<32; i++){
       if (password.length() == i){
         EEPROM.write(i ,0 );
+        EEPROM.commit();
         return true; 
       } else {
         EEPROM.write(i, password[i]);
       }//Password length 
     }// for
   }
+  EEPROM.commit();
   return true;
  }
 
@@ -93,12 +101,14 @@ boolean memoryManager::storeUserID(String password){
     for(int i = 0; i<32; i++){
       if (password.length() == i){
         EEPROM.write(i + 64,0 );
+        EEPROM.commit();
         return true; 
       } else {
         EEPROM.write(i + 64, password[i]);
       }//Password length 
     }// for
   }
+  EEPROM.commit();
   return true;
 }
 

@@ -11,6 +11,8 @@
 class memoryManager {  
   public:  
 
+    void init();
+
     //Loads the SSID from the EEPROM
     //it stops after 32 chars or when it reads a 0
     String loadSSID();
