@@ -1,0 +1,112 @@
+<html>
+	<head>
+		<script src="chart.js"></script> 
+		<script src="data.js"></script> 
+		<style>
+
+			body, html {
+				font-family: Arial;
+			}
+
+			.tablink {
+				width: 50%;
+				background-color: #797;
+				color: white;
+				float: left;
+				border: none;
+				outline: none;
+				padding: 14px 16px;
+				font-size: 25px;
+				
+			}
+
+			.tablink:hover {
+				background-color: #585;
+			}
+
+			.tabcontent {
+				display: none;
+				padding: 15px 15px;
+				height: 100%;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<button class="tablink" onclick="openTab('Messwerte', this)" id="default">Messwerte</button>
+		<button class="tablink" onclick="openTab('Einstellungen', this)">Einstellungen</button>
+
+		<div id="Messwerte" class="tabcontent">
+			Messwerte der letzten 60 Messungen
+			<div style="width:80%;">
+				<canvas id="canvas"></canvas>
+			</div>
+		</div>
+
+		<div id="Einstellungen" class="tabcontent">
+			<h1>Einstellungen Sensor und UUID</h1>
+			<form action="">
+				<table style="width:30%">
+					<td>UUID (Wird nach der Anmeldung vergeben):</td>
+					<td><input type="text" name="uid" value="uid" style="width:300%"></td>
+				  </tr>
+				  <tr>
+				  	<td>Humidity Sensor:</td>
+					<td> 
+						<select name="humsensor">
+						<option>dht11</option>
+						<option>dht12</option>
+						<option>dht22</option>
+						</select>
+					</td>
+				  </tr>
+				</table>
+			<input type="submit" value="Submit">
+			</form> 
+			
+			
+			<form action="">
+				<h1>Einstellungen W-LAN</h1>
+				<table style="width:100%">
+				  <tr>
+					<td width="20%">WLAN SSID: </td>
+					<td width="80%"><input type="text" name="ssid" value="ssid" style="width:40%"></td> 
+				  </tr>
+				  <tr>
+					<td>WLAN Password:</td>
+					<td><input type="text" name="password" value="password" style="width:40%"></td>
+				  </tr>
+				</table>
+			<input type="submit" value="Submit">
+			</form> 
+			
+			
+		</div>
+
+		<script>
+			function openTab(tabName,element) {
+
+				var tabcontent = document.getElementsByClassName("tabcontent");
+				for (var i = 0; i < tabcontent.length; i++) {
+					tabcontent[i].style.display = "none";
+				}
+			  
+				var tablinks = document.getElementsByClassName("tablink");
+				for (var i = 0; i < tablinks.length; i++) {
+					tablinks[i].style.backgroundColor = "";
+				}
+				element.style.backgroundColor = 'green';
+				document.getElementById(tabName).style.display = "block";
+			}
+
+			document.getElementById("default").click();
+
+			window.onload = function() {
+				var ctx = document.getElementById('canvas').getContext('2d');
+				let chart = new Chart(ctx, data);
+			};
+				
+		</script>
+	</body>
+</html> 
