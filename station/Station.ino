@@ -9,7 +9,6 @@
 #include <EEPROM.h>
 #include <HTTPClient.h>
 
-#include "opensensemap.h"
 #include "memory_manager.h"
 #include "chart.js.h"
 #include "internal_page.h"
@@ -189,17 +188,14 @@ void transmitSensorData(){
   Serial.println(request);
   
   //Transfer Measurement data to the Webservice
-  //if (UID.length() == 32){
+  if (UID.length() == 32){
     HTTPClient http;
     http.begin(request);
     int httpCode = http.GET();   
     Serial.println("Data Transmit HTTP Code: " + (String)httpCode);                                   
     http.end(); 
-  //}
+  }
 
-  //Insert open sense map sensor ID'S here
-  //postFloatValue (25.5, 1, "SensorID","StationID");
-  
 }
 
 
